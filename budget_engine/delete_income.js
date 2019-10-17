@@ -11,6 +11,7 @@ const mongodb = require("mongodb"),
   connectedDb = my_mongodb.connectedDb,
   constants = require("./constants");
 
+// --- TBD concat promises ???
 connectedDb
   .then(db => {
     const dbObject = db.db(connectedDb.dbName);
