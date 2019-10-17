@@ -6,23 +6,23 @@ if (process.argv.length != 4) {
 const description = process.argv[2];
 const amount = Number(process.argv[3]);
 
-
-const constants = require('./constants') , 
-      my_mongodb = require("./my_mongodb") ,
-      connectedDb = my_mongodb.connectedDb;
+const constants = require("./constants"),
+  my_mongodb = require("./my_mongodb"),
+  connectedDb = my_mongodb.connectedDb;
 
 connectedDb
   .then(db => {
     const dbObject = db.db(connectedDb.dbName);
     const incomesCollection = dbObject.collection(constants.incomesCollection);
-    incomesCollection.insertOne(
-      { description: description, amount: amount },
-      (err, result) => {
-        if (err) throw err;
-        console.log('delete is success');
+    incomesCollection
+      .insertOne({ description: description, amount: amount })
+      .then(result => {
+        console.log("insert is success", result);
         db.close(); // -- close db and connection
-      }
-    );
+      })
+      .catch(err => {
+        throw err;
+      });
   })
   .catch(err => {
     throw err;

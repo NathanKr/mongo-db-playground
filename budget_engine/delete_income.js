@@ -6,10 +6,10 @@ if (process.argv.length != 3) {
 // --- e.g. 5da8240bdc1aad0efacfed51
 const _id = process.argv[2];
 
-const mongodb = require("mongodb");
-const my_mongodb = require("./my_mongodb");
-const connectedDb = my_mongodb.connectedDb;
-const constants = require("./constants");
+const mongodb = require("mongodb"),
+  my_mongodb = require("./my_mongodb"),
+  connectedDb = my_mongodb.connectedDb,
+  constants = require("./constants");
 
 connectedDb
   .then(db => {
