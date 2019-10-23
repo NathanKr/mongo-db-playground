@@ -5,6 +5,12 @@ app.use(express.json());
 
 const routerHelper = require("./library_engine");
 
+// --- use patch because i might update part of the properties
+app.patch("/books/:id", (req, res) => {
+  routerHelper.handlePatch(req, res);
+});
+
+
 app.get("/books", (req, res) => {
   routerHelper.handleGet(req, res);
 });
